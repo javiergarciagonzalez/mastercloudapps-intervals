@@ -10,8 +10,8 @@ public class Min extends Limit {
     }
 
     @Override
-    public boolean isWithin(double value) {
-        return this.limitService.minIsWithin(this.value, value);
+    public boolean isWithin(Limit limit) {
+        return this.limitService.isWithin(this, limit);
     }
 
     @Override

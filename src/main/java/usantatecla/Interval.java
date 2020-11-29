@@ -11,8 +11,8 @@ public class Interval {
         this.max = max;
     }
 
-    public boolean include(double value) {
-            return this.min.isWithin(value) && this.max.isWithin(value);
+    public boolean include(Limit limit) {
+        return this.min.isWithin(limit) && this.max.isWithin(limit);
     }
 
     @Override
@@ -49,6 +49,6 @@ public class Interval {
     @Override
     public String toString() {
         return this.min.toString() + ", " + max.toString();
-    }	
+    }
 
 }

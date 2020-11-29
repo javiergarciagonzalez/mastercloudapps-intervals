@@ -1,6 +1,6 @@
 package usantatecla;
 
-abstract public class Limit {
+public abstract class Limit {
 
     protected double value;
 
@@ -8,7 +8,7 @@ abstract public class Limit {
         this.value = value;
     }
 
-    abstract public boolean isWithin(double value);
+    public abstract boolean isWithin(Limit limit);
 
     @Override
     public int hashCode() {

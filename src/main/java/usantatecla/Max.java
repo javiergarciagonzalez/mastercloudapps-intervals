@@ -10,8 +10,8 @@ public class Max extends Limit {
     }
 
     @Override
-    public boolean isWithin(double value) {
-        return this.limitService.maxIsWithin(this.value, value);
+    public boolean isWithin(Limit limit) {
+        return this.limitService.isWithin(this, limit);
     }
 
     @Override

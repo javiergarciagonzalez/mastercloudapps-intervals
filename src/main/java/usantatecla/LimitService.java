@@ -2,11 +2,11 @@ package usantatecla;
 
 public class LimitService {
 
-    public boolean minIsWithin(double limitOrigin, double newLimit) {
-        return limitOrigin < newLimit;
+    public boolean isWithin(Min limitOrigin, Limit newLimit) {
+        return limitOrigin.value < newLimit.value;
     }
 
-    public boolean maxIsWithin(double limitOrigin, double newLimit) {
-        return limitOrigin > newLimit;
+    public boolean isWithin(Max limitOrigin, Limit newLimit) {
+        return limitOrigin.value > newLimit.value;
     }
 }
