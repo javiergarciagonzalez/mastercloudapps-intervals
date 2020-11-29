@@ -11,10 +11,23 @@ public class ClosedMinTest extends MinTest {
         return new ClosedMin(this.point.getEquals());
     }
 
+
+    @Test
+    @Override
+    public void givenMinWhenIsWithinWithLessValueThenTrue() {
+        assertTrue(this.min.isWithin(this.createMin()));
+    }
+
     @Test
     @Override
     public void givenMinWhenIsWithinWithEqualsValue() {
-        assertTrue(this.min.isWithin(this.point.getEquals()));
+        assertTrue(this.min.isWithin(new ClosedMin(this.point.getEquals())));
+    }
+
+    @Test
+    @Override
+    public void givenMinWhenIsWithinWithGreaterValueThenTrue() {
+        assertTrue(this.min.isWithin(new ClosedMin(this.point.getGreater())));
     }
 
 }

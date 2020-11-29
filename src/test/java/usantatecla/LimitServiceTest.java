@@ -8,14 +8,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LimitServiceTest {
+
     protected LimitService limitService;
     protected Point point;
+    protected Max max;
+    protected Min min;
 
 
     @BeforeEach
     public void before() {
         this.point = new Point(4.4);
         this.limitService = new LimitService();
+        this.max = this.createMax();
+        this.min = this.createMin();
     }
 
     protected Max createMax() {
@@ -28,31 +33,31 @@ public class LimitServiceTest {
 
     @Test
     public void givenMaxWhenIsWithinWithLessValueThenTrue() {
-        assertTrue(this.limitService.maxIsWithin(this.point.getGreater(), this.point.getEquals()));
+        assertTrue(this.limitService.isWithin(this.max, new Max(this.point.getLess())));
     }
 
     @Test
-    public void givenMaxWhenIsWithinWithEqualsValue() {
-        assertFalse(this.limitService.maxIsWithin(this.point.getEquals(), this.point.getEquals()));
+    public void givenMaxWhenIsWithinWithEqualsValueThenTrue() {
+        assertTrue(this.limitService.isWithin(this.max, new Max(this.point.getEquals())));
     }
 
     @Test
-    public void givenMaxWhenIsWithinWithGreaterValueThenTrue() {
-        assertFalse(this.limitService.maxIsWithin(this.point.getLess(), this.point.getEquals()));
+    public void givenMaxWhenIsWithinWithGreaterValueThenFalse() {
+        assertFalse(this.limitService.isWithin(this.max, this.createMax()));
     }
 
     @Test
-    public void givenMinWhenIsWithinWithLessValueThenTrue() {
-        assertTrue(this.limitService.minIsWithin(this.point.getLess(), this.point.getEquals()));
+    public void givenMinWhenIsWithinWithLessValueThenFalse() {
+        assertFalse(this.limitService.isWithin(this.min, this.createMin()));
     }
-
+    
     @Test
-    public void givenMinWhenIsWithinWithEqualsValue() {
-        assertFalse(this.limitService.minIsWithin(this.point.getEquals(), this.point.getEquals()));
+    public void givenMinWhenIsWithinWithEqualsValueThenTrue() {
+        assertTrue(this.limitService.isWithin(this.min, new Min(this.point.getEquals())));
     }
-
+    
     @Test
     public void givenMinWhenIsWithinWithGreaterValueThenTrue() {
-        assertFalse(this.limitService.minIsWithin(this.point.getGreater(), this.point.getEquals()));
+        assertTrue(this.limitService.isWithin(this.min, new Min(this.point.getGreater())));
     }
 }
