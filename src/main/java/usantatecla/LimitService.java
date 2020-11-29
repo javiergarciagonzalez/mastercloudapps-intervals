@@ -3,10 +3,10 @@ package usantatecla;
 public class LimitService {
 
     public boolean minIsWithin(double limitOrigin, double newLimit) {
-        return false;
+        return limitOrigin < newLimit;
     }
 
     public boolean maxIsWithin(double limitOrigin, double newLimit) {
-        return false;
+        return limitOrigin > newLimit;
     }
 }
