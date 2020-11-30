@@ -3,9 +3,11 @@ package usantatecla;
 public abstract class Limit {
 
     protected double value;
+    protected LimitService limitService;
 
     public Limit(double value) {
         this.value = value;
+        this.limitService = new LimitService();
     }
 
     public abstract boolean isWithin(Limit limit);
@@ -22,10 +24,9 @@ public abstract class Limit {
 
     @Override
     public boolean equals(Object obj) {
+        assert obj != null;
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
         if (getClass() != obj.getClass())
             return false;
         Limit other = (Limit) obj;

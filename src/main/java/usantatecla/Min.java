@@ -2,11 +2,8 @@ package usantatecla;
 
 public class Min extends Limit {
 
-    private LimitService limitService;
-
     public Min(double value) {
         super(value);
-        this.limitService = new LimitService();
     }
 
     @Override

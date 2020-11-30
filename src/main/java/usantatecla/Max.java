@@ -2,11 +2,8 @@ package usantatecla;
 
 public class Max extends Limit {
 
-    private LimitService limitService;
-
     public Max(double value) {
         super(value);
-        this.limitService = new LimitService();
     }
 
     @Override
