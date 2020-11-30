@@ -1,6 +1,6 @@
 package usantatecla;
 
-public class ClosedMax extends Max {
+public class ClosedMax extends Limit {
 
     public ClosedMax(double value) {
         super(value);
@@ -8,7 +8,7 @@ public class ClosedMax extends Max {
 
     @Override
     public boolean isWithin(Limit limit) {
-        return super.isWithin(limit) || this.value == limit.value;
+        return this.limitService.isWithin(this, limit);
     }
 
     @Override

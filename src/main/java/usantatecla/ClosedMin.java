@@ -1,6 +1,6 @@
 package usantatecla;
 
-public class ClosedMin extends Min {
+public class ClosedMin extends Limit {
 
     public ClosedMin(double value) {
         super(value);
@@ -8,7 +8,7 @@ public class ClosedMin extends Min {
 
     @Override
     public boolean isWithin(Limit limit) {
-        return super.isWithin(limit) || this.value == limit.value;
+        return this.limitService.isWithin(this, limit);
     }
 
     @Override
