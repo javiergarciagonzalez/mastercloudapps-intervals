@@ -2,8 +2,8 @@ package usantatecla;
 
 public class IntervalBuilder {
 
-    private Min min;
-    private Max max;
+    private Limit min;
+    private Limit max;
     private boolean minConfigured;
     private boolean maxConfigured;
 

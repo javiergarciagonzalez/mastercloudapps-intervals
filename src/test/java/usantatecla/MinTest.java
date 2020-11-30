@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MinTest {
 
-    protected Min min;
+    protected Limit min;
     protected Point point;
 
     @BeforeEach
@@ -17,7 +17,7 @@ public class MinTest {
         this.min = this.createMin();
     }
 
-    protected Min createMin() {
+    protected Limit createMin() {
         return new Min(this.point.getEquals());
     }
 
