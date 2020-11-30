@@ -143,7 +143,7 @@ public class IntervalTest {
         assertTrue(interval.isIntersect(onTheRightInnerInterval));
         assertTrue(interval.isIntersect(onTheCenterInterval));
         assertFalse(interval.isIntersect(onMinLimitInterval));
-        assertFalse(interval.isIntersect(onMaxLimitInterval));
+        assertTrue(interval.isIntersect(onMaxLimitInterval));
         assertTrue(interval.isIntersect(interval));
     }
 

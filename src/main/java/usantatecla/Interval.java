@@ -16,7 +16,11 @@ public class Interval {
     }
 
     public boolean isIntersect(Interval interval) {
-        return false;
+        if (this.equals(interval) || this.include(interval.min)) {
+            return true;
+        }
+
+        return interval.include(this.min);
     }
 
     @Override
