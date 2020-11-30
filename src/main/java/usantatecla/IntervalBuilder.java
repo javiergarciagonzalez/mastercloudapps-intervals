@@ -14,26 +14,32 @@ public class IntervalBuilder {
 
     public IntervalBuilder open(double value) {
         assert !this.minConfigured || !this.maxConfigured;
-        if (!this.minConfigured) {
-            this.min = new Min(value);
-            this.minConfigured = true;
-        } else if (!this.maxConfigured) {
-            this.max = new Max(value);
-            this.maxConfigured = true;
-        }
+        configureLimits(value, new Min(value), new Max(value));
         return this;
     }
 
     public IntervalBuilder closed(double value) {
         assert !this.minConfigured || !this.maxConfigured;
-        if (!this.minConfigured) {
-            this.min = new ClosedMin(value);
-            this.minConfigured = true;
-        } else if (!this.maxConfigured) {
-            this.max = new ClosedMax(value);
-            this.maxConfigured = true;
-        }
+        configureLimits(value, new ClosedMin(value), new ClosedMax(value));
         return this;
+    }
+
+    private void configureLimits(double value, Limit min, Limit max) {
+        if (!this.minConfigured) {
+            this.configureMin(value, min);
+        } else if (!this.maxConfigured) {
+            this.configureMax(value, max);
+        }
+    }
+
+    private void configureMin(double value, Limit min) {
+        this.min = min;
+        this.minConfigured = true;
+    }
+
+    private void configureMax(double value, Limit max) {
+        this.max = max;
+        this.maxConfigured = true;
     }
 
     public Interval build() {
