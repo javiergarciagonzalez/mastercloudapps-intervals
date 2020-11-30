@@ -28,7 +28,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervaOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
+    public void givenIntervalOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
         Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
         assertFalse(interval.include(this.minOpened));
         assertFalse(interval.include(new OpenedMin(left.getEquals())));
@@ -39,7 +39,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervaOpenOpenlwhenInc3ludeWithIncludedValueThenTrue() {
+    public void givenIntervalOpenOpenlwhenInc3ludeWithIncludedValueThenTrue() {
         Interval interval = this.intervalBuilder.closed(left.getEquals()).open(right.getEquals()).build();
         assertFalse(interval.include(this.minClosed));
         assertTrue(interval.include(new OpenedMin(left.getEquals())));
@@ -51,7 +51,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervaOpenOpenlwhenIncludeWit3hIncludedValueThenTrue() {
+    public void givenIntervalOpenOpenlwhenIncludeWit3hIncludedValueThenTrue() {
         Interval interval = this.intervalBuilder.open(left.getEquals()).closed(right.getEquals()).build();
         assertFalse(interval.include(this.minOpened));
         assertFalse(interval.include(new OpenedMin(left.getEquals())));
@@ -63,7 +63,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervaOpenOpenlwhenIncludeWithInclude5dValueThenTrue() {
+    public void givenIntervalOpenOpenlwhenIncludeWithInclude5dValueThenTrue() {
         Interval interval = this.intervalBuilder.closed(left.getEquals()).closed(right.getEquals()).build();
         assertFalse(interval.include(this.minClosed));
         assertTrue(interval.include(new OpenedMin(left.getEquals())));
