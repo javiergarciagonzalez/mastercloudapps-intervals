@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class MaxTest {
 
-    protected Limit max;
+    protected Max max;
     protected Point point;
 
     @BeforeEach
@@ -17,7 +17,7 @@ public class MaxTest {
         this.max = this.createMax();
     }
 
-    protected Limit createMax() {
+    protected Max createMax() {
         return new Max(this.point.getEquals());
     }
 

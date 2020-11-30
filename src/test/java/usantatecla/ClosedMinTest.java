@@ -4,28 +4,35 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ClosedMinTest extends MinTest {
+import org.junit.jupiter.api.BeforeEach;
 
-    @Override
-    protected Min createMin() {
+public class ClosedMinTest {
+
+    protected ClosedMin min;
+    protected Point point;
+
+    @BeforeEach
+    public void before() {
+        this.point = new Point(4.4);
+        this.min = this.createMin();
+    }
+
+    protected ClosedMin createMin() {
         return new ClosedMin(this.point.getEquals());
     }
 
 
     @Test
-    @Override
     public void givenMinWhenIsWithinWithLessValueThenTrue() {
         assertTrue(this.min.isWithin(this.createMin()));
     }
 
     @Test
-    @Override
     public void givenMinWhenIsWithinWithEqualsValue() {
         assertTrue(this.min.isWithin(new ClosedMin(this.point.getEquals())));
     }
 
     @Test
-    @Override
     public void givenMinWhenIsWithinWithGreaterValueThenTrue() {
         assertTrue(this.min.isWithin(new ClosedMin(this.point.getGreater())));
     }
