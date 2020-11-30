@@ -14,26 +14,25 @@ public class OpenedMinTest {
     @BeforeEach
     public void before() {
         this.point = new Point(4.4);
-        this.openedMin = this.createMax();
+        this.openedMin = this.createMin();
     }
 
-    protected Max createMax() {
+    protected OpenedMin createMin() {
         return new OpenedMin(this.point.getEquals());
     }
 
     @Test
-    public void givenMaxWhenIsWithinWithLessValueThenTrue() {
-        assertTrue(this.openedMin.isWithin(new Max(this.point.getLess())));
+    public void givenMinWhenIsWithinWithLessValueThenTrue() {
+        assertFalse(this.openedMin.isWithin(this.createMin()));
     }
 
     @Test
-    public void givenMaxWhenIsWithinWithEqualsValue() {
-        assertFalse(this.openedMin.isWithin(new Max(this.point.getEquals())));
+    public void givenMinWhenIsWithinWithEqualsValue() {
+        assertFalse(this.openedMin.isWithin(new OpenedMin(this.point.getEquals())));
     }
 
     @Test
-    public void givenMaxWhenIsWithinWithGreaterValue() {
-        assertFalse(this.openedMin.isWithin(this.createMax()));
+    public void givenMinWhenIsWithinWithGreaterValueThenTrue() {
+        assertTrue(this.openedMin.isWithin(new OpenedMin(this.point.getGreater())));
     }
-
 }

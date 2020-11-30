@@ -10,19 +10,19 @@ public class IntervalTest {
 
     private Point left = new Point(-2.2);
     private Point right = new Point(4.4);
-    private Min minOpened;
+    private OpenedMin minOpened;
     private ClosedMin minClosed;
-    private Max maxOpened;
+    private OpenedMax maxOpened;
     private ClosedMax maxClosed;
     private IntervalBuilder intervalBuilder;
 
     @BeforeEach
     public void before() {
         this.left = new Point(-2.2);
-        this.minOpened = new Min(left.getLess());
+        this.minOpened = new OpenedMin(left.getLess());
         this.minClosed = new ClosedMin(left.getLess());
         this.right = new Point(4.4);
-        this.maxOpened = new Max(this.right.getGreater());
+        this.maxOpened = new OpenedMax(this.right.getGreater());
         this.maxClosed = new ClosedMax(this.right.getGreater());
         this.intervalBuilder = new IntervalBuilder();
     }
@@ -31,10 +31,10 @@ public class IntervalTest {
     public void givenIntervaOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
         Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
         assertFalse(interval.include(this.minOpened));
-        assertFalse(interval.include(new Min(left.getEquals())));
-        assertTrue(interval.include(new Min(left.getGreater())));
-        assertTrue(interval.include(new Max(right.getLess())));
-        assertFalse(interval.include(new Max(right.getEquals())));
+        assertFalse(interval.include(new OpenedMin(left.getEquals())));
+        assertTrue(interval.include(new OpenedMin(left.getGreater())));
+        assertTrue(interval.include(new OpenedMax(right.getLess())));
+        assertFalse(interval.include(new OpenedMax(right.getEquals())));
         assertFalse(interval.include(this.maxOpened));
     }
 
@@ -42,11 +42,11 @@ public class IntervalTest {
     public void givenIntervaOpenOpenlwhenInc3ludeWithIncludedValueThenTrue() {
         Interval interval = this.intervalBuilder.closed(left.getEquals()).open(right.getEquals()).build();
         assertFalse(interval.include(this.minClosed));
-        assertTrue(interval.include(new Min(left.getEquals())));
-        assertTrue(interval.include(new Min(left.getGreater())));
+        assertTrue(interval.include(new OpenedMin(left.getEquals())));
+        assertTrue(interval.include(new OpenedMin(left.getGreater())));
 
-        assertTrue(interval.include(new Max(right.getLess())));
-        assertFalse(interval.include(new Max(right.getEquals())));
+        assertTrue(interval.include(new OpenedMax(right.getLess())));
+        assertFalse(interval.include(new OpenedMax(right.getEquals())));
         assertFalse(interval.include(this.maxOpened));
     }
 
@@ -54,11 +54,11 @@ public class IntervalTest {
     public void givenIntervaOpenOpenlwhenIncludeWit3hIncludedValueThenTrue() {
         Interval interval = this.intervalBuilder.open(left.getEquals()).closed(right.getEquals()).build();
         assertFalse(interval.include(this.minOpened));
-        assertFalse(interval.include(new Min(left.getEquals())));
-        assertTrue(interval.include(new Min(left.getGreater())));
+        assertFalse(interval.include(new OpenedMin(left.getEquals())));
+        assertTrue(interval.include(new OpenedMin(left.getGreater())));
 
-        assertTrue(interval.include(new Max(right.getLess())));
-        assertTrue(interval.include(new Max(right.getEquals())));
+        assertTrue(interval.include(new OpenedMax(right.getLess())));
+        assertTrue(interval.include(new OpenedMax(right.getEquals())));
         assertFalse(interval.include(this.maxClosed));
     }
 
@@ -66,11 +66,11 @@ public class IntervalTest {
     public void givenIntervaOpenOpenlwhenIncludeWithInclude5dValueThenTrue() {
         Interval interval = this.intervalBuilder.closed(left.getEquals()).closed(right.getEquals()).build();
         assertFalse(interval.include(this.minClosed));
-        assertTrue(interval.include(new Min(left.getEquals())));
-        assertTrue(interval.include(new Min(left.getGreater())));
+        assertTrue(interval.include(new OpenedMin(left.getEquals())));
+        assertTrue(interval.include(new OpenedMin(left.getGreater())));
 
-        assertTrue(interval.include(new Max(right.getLess())));
-        assertTrue(interval.include(new Max(right.getEquals())));
+        assertTrue(interval.include(new OpenedMax(right.getLess())));
+        assertTrue(interval.include(new OpenedMax(right.getEquals())));
         assertFalse(interval.include(this.maxClosed));
     }
 

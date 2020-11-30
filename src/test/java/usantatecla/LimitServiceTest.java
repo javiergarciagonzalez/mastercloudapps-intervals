@@ -11,8 +11,8 @@ public class LimitServiceTest {
 
     protected LimitService limitService;
     protected Point point;
-    protected Max max;
-    protected Min min;
+    protected OpenedMax max;
+    protected OpenedMin min;
 
 
     @BeforeEach
@@ -23,22 +23,22 @@ public class LimitServiceTest {
         this.min = this.createMin();
     }
 
-    protected Max createMax() {
-        return new Max(this.point.getGreater());
+    protected OpenedMax createMax() {
+        return new OpenedMax(this.point.getGreater());
     }
 
-    protected Min createMin() {
-        return new Min(this.point.getLess());
+    protected OpenedMin createMin() {
+        return new OpenedMin(this.point.getLess());
     }
 
     @Test
     public void givenMaxWhenIsWithinWithLessValueThenTrue() {
-        assertTrue(this.limitService.isWithin(this.max, new Max(this.point.getLess())));
+        assertTrue(this.limitService.isWithin(this.max, new OpenedMax(this.point.getLess())));
     }
 
     @Test
     public void givenMaxWhenIsWithinWithEqualsValueThenTrue() {
-        assertTrue(this.limitService.isWithin(this.max, new Max(this.point.getEquals())));
+        assertTrue(this.limitService.isWithin(this.max, new OpenedMax(this.point.getEquals())));
     }
 
     @Test
@@ -53,11 +53,11 @@ public class LimitServiceTest {
     
     @Test
     public void givenMinWhenIsWithinWithEqualsValueThenTrue() {
-        assertTrue(this.limitService.isWithin(this.min, new Min(this.point.getEquals())));
+        assertTrue(this.limitService.isWithin(this.min, new OpenedMin(this.point.getEquals())));
     }
     
     @Test
     public void givenMinWhenIsWithinWithGreaterValueThenTrue() {
-        assertTrue(this.limitService.isWithin(this.min, new Min(this.point.getGreater())));
+        assertTrue(this.limitService.isWithin(this.min, new OpenedMin(this.point.getGreater())));
     }
 }

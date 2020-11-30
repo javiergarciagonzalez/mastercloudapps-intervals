@@ -19,19 +19,19 @@ public class BuilderIntervalTest {
     @Test
     public void givenIntervalBuilderWhenOpenOpen() {
         Interval interval = new IntervalBuilder().open(this.min).open(this.max).build();
-        assertEquals(interval, new Interval(new Min(this.min), new Max(this.max)));
+        assertEquals(interval, new Interval(new OpenedMin(this.min), new OpenedMax(this.max)));
     }
 
     @Test
     public void givenIntervalBuilderWhenOpenClosed() {
         Interval interval = new IntervalBuilder().open(this.min).closed(this.max).build();
-        assertEquals(interval, new Interval(new Min(this.min), new ClosedMax(this.max)));
+        assertEquals(interval, new Interval(new OpenedMin(this.min), new ClosedMax(this.max)));
     }
 
     @Test
     public void givenIntervalBuilderWhenClosedOpen() {
         Interval interval = new IntervalBuilder().closed(this.min).open(this.max).build();
-        assertEquals(interval, new Interval(new ClosedMin(this.min), new Max(this.max)));
+        assertEquals(interval, new Interval(new ClosedMin(this.min), new OpenedMax(this.max)));
     }
 
     @Test

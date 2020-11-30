@@ -17,18 +17,18 @@ public class OpenedMaxTest {
         this.openedMax = this.createMax();
     }
 
-    protected Max createMax() {
+    protected OpenedMax createMax() {
         return new OpenedMax(this.point.getEquals());
     }
 
     @Test
     public void givenMaxWhenIsWithinWithLessValueThenTrue() {
-        assertTrue(this.openedMax.isWithin(new Max(this.point.getLess())));
+        assertTrue(this.openedMax.isWithin(new OpenedMax(this.point.getLess())));
     }
 
     @Test
     public void givenMaxWhenIsWithinWithEqualsValue() {
-        assertFalse(this.openedMax.isWithin(new Max(this.point.getEquals())));
+        assertFalse(this.openedMax.isWithin(new OpenedMax(this.point.getEquals())));
     }
 
     @Test

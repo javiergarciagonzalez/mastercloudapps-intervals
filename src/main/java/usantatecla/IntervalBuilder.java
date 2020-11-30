@@ -14,7 +14,7 @@ public class IntervalBuilder {
 
     public IntervalBuilder open(double value) {
         assert !this.minConfigured || !this.maxConfigured;
-        configureLimits(value, new Min(value), new Max(value));
+        configureLimits(value, new OpenedMin(value), new OpenedMax(value));
         return this;
     }
 
