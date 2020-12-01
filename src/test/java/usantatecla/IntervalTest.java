@@ -100,7 +100,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervalOpenOpenWhenCheckingIntersectionThenAllAssertionPass () {
+    public void givenIntervalOpenOpenWhenCheckingIntersectionThenAllAssertionsPass () {
         Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
 
         Interval biggerInterval = new IntervalBuilder().open(left.getLess()).open(right.getGreater()).build();
@@ -124,7 +124,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervalCloseOpenWhenCheckingIntersectionThenAllAssertionPass () {
+    public void givenIntervalCloseOpenWhenCheckingIntersectionThenAllAssertionsPass () {
         Interval interval = this.intervalBuilder.open(left.getEquals()).closed(right.getEquals()).build();
 
         Interval biggerInterval = new IntervalBuilder().closed(left.getLess()).open(right.getGreater()).build();
@@ -149,7 +149,7 @@ public class IntervalTest {
 
 
     @Test
-    public void givenIntervalOpenCloseWhenCheckingIntersectionThenAllAssertionPass () {
+    public void givenIntervalOpenCloseWhenCheckingIntersectionThenAllAssertionsPass () {
         Interval interval = this.intervalBuilder.closed(left.getEquals()).open(right.getEquals()).build();
 
         Interval biggerInterval = new IntervalBuilder().open(left.getLess()).closed(right.getGreater()).build();
@@ -173,7 +173,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void givenIntervalCloseCloseWhenCheckingIntersectionThenAllAssertionPass () {
+    public void givenIntervalCloseCloseWhenCheckingIntersectionThenAllAssertionsPass () {
         Interval interval = this.intervalBuilder.closed(left.getEquals()).closed(right.getEquals()).build();
 
         Interval biggerInterval = new IntervalBuilder().closed(left.getLess()).closed(right.getGreater()).build();
