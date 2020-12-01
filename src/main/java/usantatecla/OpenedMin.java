@@ -12,6 +12,6 @@ public class OpenedMin extends Limit {
 
     @Override
     public String toString() {
-        return "(" + this.value;
+        return "(" + this.getValue();
     }
 }

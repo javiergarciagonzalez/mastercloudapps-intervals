@@ -2,7 +2,7 @@ package usantatecla;
 
 public abstract class Limit {
 
-    protected double value;
+    private double value;
     protected LimitService limitService;
 
     public Limit(double value) {
@@ -11,6 +11,10 @@ public abstract class Limit {
     }
 
     public abstract boolean isWithin(Limit limit);
+
+    protected double getValue() {
+        return this.value;
+    }
 
     @Override
     public int hashCode() {

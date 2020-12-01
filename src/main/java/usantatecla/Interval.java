@@ -6,7 +6,7 @@ public class Interval {
     private Limit max;
 
     public Interval(Limit min, Limit max) {
-        assert min.value <= max.value;
+        assert min.getValue() <= max.getValue();
         this.min = min;
         this.max = max;
     }
