@@ -11,7 +11,7 @@ public class IntervalTest {
     private Point left;
     private Point right;
     private IntervalBuilder intervalBuilder;
-    
+
     private OpenedMin minOpenedLeft;
     private OpenedMin minOpenedCenter;
     private OpenedMin minOpenedRight;
@@ -125,7 +125,7 @@ public class IntervalTest {
 
     @Test
     public void givenIntervalCloseOpenWhenCheckingIntersectionThenAllAssertionsPass () {
-        Interval interval = this.intervalBuilder.open(left.getEquals()).closed(right.getEquals()).build();
+        Interval interval = this.intervalBuilder.closed(left.getEquals()).open(right.getEquals()).build();
 
         Interval biggerInterval = new IntervalBuilder().closed(left.getLess()).open(right.getGreater()).build();
         Interval onTheLeftOutterInterval = new IntervalBuilder().closed(left.getLess() - 1).open(left.getLess()).build();
@@ -143,14 +143,13 @@ public class IntervalTest {
         assertTrue(interval.isIntersect(onTheRightInnerInterval));
         assertTrue(interval.isIntersect(onTheCenterInterval));
         assertFalse(interval.isIntersect(onMinLimitInterval));
-        assertTrue(interval.isIntersect(onMaxLimitInterval));
+        assertFalse(interval.isIntersect(onMaxLimitInterval));
         assertTrue(interval.isIntersect(interval));
     }
 
-
     @Test
     public void givenIntervalOpenCloseWhenCheckingIntersectionThenAllAssertionsPass () {
-        Interval interval = this.intervalBuilder.closed(left.getEquals()).open(right.getEquals()).build();
+        Interval interval = this.intervalBuilder.open(left.getEquals()).closed(right.getEquals()).build();
 
         Interval biggerInterval = new IntervalBuilder().open(left.getLess()).closed(right.getGreater()).build();
         Interval onTheLeftOutterInterval = new IntervalBuilder().open(left.getLess() - 1).closed(left.getLess()).build();
@@ -167,7 +166,7 @@ public class IntervalTest {
         assertTrue(interval.isIntersect(onTheLeftInnerInterval));
         assertTrue(interval.isIntersect(onTheRightInnerInterval));
         assertTrue(interval.isIntersect(onTheCenterInterval));
-        assertTrue(interval.isIntersect(onMinLimitInterval));
+        assertFalse(interval.isIntersect(onMinLimitInterval));
         assertFalse(interval.isIntersect(onMaxLimitInterval));
         assertTrue(interval.isIntersect(interval));
     }
@@ -194,5 +193,18 @@ public class IntervalTest {
         assertTrue(interval.isIntersect(onMinLimitInterval));
         assertTrue(interval.isIntersect(onMaxLimitInterval));
         assertTrue(interval.isIntersect(interval));
+    }
+
+    @Test
+    public void GivenTwoIntervalsThatDontIntersectWhenCheckingTheirIntersectionThenIsFalse() {
+        double left = new Point(1).getEquals();
+        double center = new Point(2).getEquals();
+        double right = new Point(3).getEquals();
+
+        Interval openOpenInterval = new IntervalBuilder().open(left).open(center).build();
+        Interval closeCloseInterval = new IntervalBuilder().closed(center).closed(right).build();
+
+        assertFalse(openOpenInterval.isIntersect(closeCloseInterval));
+        assertFalse(closeCloseInterval.isIntersect(openOpenInterval));
     }
 }
